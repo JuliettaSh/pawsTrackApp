@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nueva Publicación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #f6f6f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #5a4d7c;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            color: #333;
+            box-sizing: border-box; /* Asegura que el padding no afecte al ancho total */
+        }
+
+        .form-group input[type="file"] {
+            padding: 12px;  /* Asegura que el input de archivo tenga el mismo tamaño */
+            font-size: 1em;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #5a4d7c;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            margin-right: 15px;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #9c7ca4;
+        }
+
+        .back-btn {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        .back-btn:hover {
+            background-color: #bbb;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .col-6 {
+            flex: 1 1 48%;
+        }
+
+        .col-12 {
+            flex: 1 1 100%;
+        }
+
+        .form-actions {
+            text-align: center;
+        }
+
+        /* Espaciado entre los inputs */
+        .form-group {
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Crear Nueva Publicación</h1>
+
+        <form method="POST" enctype="multipart/form-data" th:object="${publiDto}">
+            <div class="row">
+                <div class="col-6 mx-auto rounded border p-4 m-4">
+                    <div class="form-group">
+                        <label for="nombre_mascota">Nombre de la Mascota</label>
+                        <input type="text" id="nombre_mascota" name="nombre_mascota" th:field="${publiDto.nombre_mascota}" required>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" id="telefono" name="telefono" th:field="${publiDto.telefono}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccion" name="direccion" th:field="${publiDto.direccion}" required>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="archivo_foto">Foto</label>
+                        <input type="file" id="archivoFoto" name="archivoFoto" th:field="${publiDto.archivoFoto}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea id="descripcion" name="descripcion" th:field="${publiDto.descripcion}" required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn">Guardar Publicación</button>
+                <a href="/publicaciones" class="btn back-btn">Cancelar</a>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>
